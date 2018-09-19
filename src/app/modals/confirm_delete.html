@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{title||'Delete'}}</h4>
+</div>
+
+<div class="modal-body">
+    <i class="fa fa-lg fa-question-circle"></i> Are you sure you want to delete {{what}}?
+</div>
+
+<div class="modal-footer">
+    <div class="btn-group">
+        <button class="btn btn-danger" ng-click="$modalInstance.close()">Yes</button>
+        <button class="btn btn-default" ng-click="$modalInstance.dismiss()">No</button>
+    </div>
+</div>

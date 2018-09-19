@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h4 class="modal-title">2. Rejected Panels</h4>
+</div>
+
+<table class="table table-hover" st-table="panels">
+  <thead>
+    <tr>
+      <th><i class="fa fa-check-square"></i></th>
+      <th>Material</th>
+      <th>Colour</th>
+      <th class="text-right">Size</th>
+    </tr>
+    <tr>
+      <td colspan="4">
+        <div class="input-group" style="width:100%">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+          <input class="form-control" st-search="" type="search" placeholder="filter...">
+        </div>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="row in panels" ng-click="select(row)">
+      <td>
+        <i class="fa" ng-class="{'fa-check-square-o': isSelected(row), 'fa-square-o': !isSelected(row)}"></i>
+      </td>
+      <td>{{row.material}}</td>
+      <td>{{row.colour}}</td>
+      <td class="text-nowrap text-right">{{row.width|fraction}}″ x {{row.height|fraction}}″ x {{row.depth|fraction}}″</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="4" class="text-center">
+        <div st-pagination="" st-items-by-page="7" st-displayed-pages="7"></div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+  <button class="btn btn-primary" ng-click="submit()" ng-disabled="!isValid()">
+    <i class="fa fa-arrow-right"></i> Next
+  </button>
+</div>

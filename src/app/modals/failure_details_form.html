@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title">3. Failure Details</h4>
+</div>
+
+<div class="modal-body">
+    <div class="well form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-xs-4">Failure Source</label>
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="data.failure_source"
+                       uib-typeahead="o.description for o in lookups.failure_sources | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-4">Discrepancy</label>
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="data.discrepancy"
+                       uib-typeahead="o.description for o in lookups.discrepancies | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-4">Found By</label>
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="data.found_by_department"
+                       uib-typeahead="o.description for o in lookups.departments | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-4">Rush Code</label>
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="data.rush_code"
+                       uib-typeahead="o.description for o in lookups.rush_codes | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-xs-4">Product Type</label>
+            <div class="col-xs-8">
+                <input class="form-control" ng-model="data.product_type"
+                       uib-typeahead="o for o in productTypes | filter:$viewValue | limitTo:8">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+    <button class="btn btn-primary" ng-click="$uibModalInstance.close(data)"><i class="fa fa-check"></i> Submit</button>
+</div>

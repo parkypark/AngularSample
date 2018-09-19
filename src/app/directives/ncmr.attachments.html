@@ -1,0 +1,24 @@
+<span ng-if="!ncmr.attachments.length">
+  <i class="fa fa-info-circle"></i> No attachments.
+</span>
+
+<div ng-if="hasSelected()" class="alert alert-warning" style="padding: 8px">
+  <button class="btn btn-danger" ng-click="deleteSelected()">
+    <i class="fa fa-trash-o"></i> Delete Selected
+  </button>
+</div>
+
+<ul class="list-inline">
+  <li class="col-md-3" ng-repeat="attachment in ncmr.attachments" style="padding: 5px">
+    <figure class="text-center" style="border: 1px dotted #ddd">
+      <div class="checkbox pull-right">
+        <input ng-model="selected[attachment.name]" type="checkbox" style="margin-left:-20px; margin-top:-5px;">
+      </div>
+
+      <a title="{{attachment.name}}" ng-click="showAttachment(attachment)">
+        <img ng-if="attachment.data" ng-src="{{attachment.data}}">
+      </a>
+      <figcaption style="border-top: 1px dotted #ddd">{{attachment.name}}</figcaption>
+    </figure>
+  </li>
+</ul>

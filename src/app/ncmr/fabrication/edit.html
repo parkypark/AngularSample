@@ -1,0 +1,143 @@
+<section id="ncmr">
+  <nav class="navbar navbar-buttons navbar-fixed-top hidden-print actions" role="navigation">
+    <div class="container">
+      <form class="navbar-form navbar-right">
+        <button class="btn btn-default" ui-sref="^.list"><i class="fa fa-ban"></i> Cancel</button>
+        <button class="btn btn-primary" ng-disabled="!isValid()" ng-click="save()"><i class="fa fa-save"></i> Save</button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title" ng-if="ncmr._id !== null">Editing Fabrication NCMR #{{ncmr.report_number}}</h3>
+      <h3 class="panel-title" ng-if="ncmr._id == null">Creating new Fabrication NCMR</h3>
+    </div>
+
+    <div class="panel-body">
+      <form name="editForm" novalidate>
+        <fieldset>
+          <div class="well">
+            <div class="row">
+              <div ng-if="ncmr._id === null" class="col-sm-6">
+                <div class="form-group">
+                  <label>Report Number</label>
+                  <input type="number" class="form-control" ng-model="ncmr.report_number" required>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Report Date</label>
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="ncmr.report_date" is-open="rdOpened"
+                          min-date="minDate" ng-change="setDate(this)" max-date="maxDate" show-weeks="false"
+                          date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="rdOpen($event)">
+                        <i class="fa fa-calendar"></i>
+                      </button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Inspection Date</label>
+                  <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup ng-model="ncmr.date_inspected" is-open="idOpened"
+                          min-date="minDate" ng-change="setDate(this)" max-date="maxDate" show-weeks="false"
+                          date-disabled="disabled(date, mode)" ng-required="true" close-text="Close">
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" ng-click="idOpen($event)">
+                        <i class="fa fa-calendar"></i>
+                      </button>
+                    </span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Inspector</label>
+                  <input class="form-control" ng-model="ncmr.inspector"
+                        uib-typeahead="o.description as o.description for o in lookups.inspectors | filter:$viewValue | limitTo:8">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Supplier</label>
+                  <input type="text" class="form-control" ng-model="ncmr.supplier">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Bundle Ref #</label>
+                  <input type="text" class="form-control" ng-model="ncmr.bundle_number">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label>Bundle Qty.</label>
+                  <input type="number" class="form-control" ng-model="ncmr.bundle_qty">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Comment</label>
+              <textarea class="form-control" ng-model="ncmr.comment" rows="3"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="panel panel-default" fab-barcode-listener-event-dir>
+
+            <div class="panel-heading">
+              <h3 class="panel-title">Lines <span class="badge pull-right">{{ncmr.details.length}}</span></h3>
+            </div>
+            <div ng-if="!ncmr.details.length" class="panel-body">
+              <i class="fa fa-info-circle"></i> No lines.
+            </div>
+            <ncmr-panel-details ncmr="ncmr" selected="selectedLines"></ncmr-panel-details>
+            <div class="panel-footer">
+              <button type="button" class="btn btn-danger" ng-if="hasSelectedLines()" ng-click="deleteSelectedLines()">
+                <i class="fa fa-trash-o"></i> Delete Selected
+              </button>
+              <button type="button" class="btn btn-default" ng-click="addLines(true)">
+                <i class="fa fa-plus"></i> Add with Remake
+              </button>
+              <button type="button" class="btn btn-default" ng-click="addLines(false)">
+                <i class="fa fa-plus"></i> Add W/O Remake
+              </button>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <div class="attachments panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Attachments <span class="badge pull-right">{{ncmr.attachments.length}}</span></h3>
+            </div>
+
+            <div class="panel-body">
+              <ncmr-attachments ncmr="ncmr"></ncmr-attachments>
+            </div>
+
+            <div class="panel-footer">
+              <span class="btn btn-file btn-default">
+                <i class="fa fa-plus"></i> Add
+                <input type="file" multiple accept="image/*" capture value="Attach..." ngf-select="addAttachments($files)">
+            </span>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<div class="modal-header">
+    <h4 class="modal-title">1. Choose List Number</h4>
+</div>
+
+<div class="modal-body">
+    <table class="table table-hover" st-table="lists" st-pipe="getLists">
+        <thead>
+        <tr>
+            <th st-sort="header.list_number" class="col-xs-2">SUL #</th>
+            <th st-sort="header.order_number" class="col-xs-2">WO #</th>
+            <th st-sort="header.project_name" class="col-xs-8">Project</th>
+        </tr>
+        <tr>
+            <th>
+                <input st-search="header.list_number" class="form-control" type="search" placeholder="filter...">
+            </th>
+            <th>
+                <input st-search="header.order_number" class="form-control"
+                type="search" placeholder="filter...">
+            </th>
+            <th>
+                <input st-search="header.project_name" class="form-control" type="search" placeholder="filter...">
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-if="lists.length === 0">
+                <td colspan="3"><i class="fa fa-info-circle"></i> Loading...</td>
+            </tr>
+            <tr ng-repeat="list in lists" ng-click="$uibModalInstance.close(list)">
+                <td>{{list.header.list_number}}</td>
+                <td>{{list.header.order_number}}</td>
+                <td>(#{{list.header.project_number}}) {{list.header.project_name}} <i class="pull-right fa fa-chevron-right"></i></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3" class="text-center">
+                    <button class="btn btn-default" ng-disabled="listPage < 2" ng-click="prevPage()">Prev</button>
+                    <button class="btn btn-default" ng-disabled="lists.length < listLength" ng-click="nextPage()">Next</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+</div>

@@ -1,0 +1,25 @@
+<table class="table">
+  <tbody ng-repeat="category in categories">
+    <tr class="active">
+      <th>{{category.Category}}</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="row">
+          <div class="col-lg-6" ng-repeat="type in types[category.Id]">
+            <table class="table table-invisible">
+              <tbody>
+                <tr>
+                  <th class="text-middle">{{type.Type}}</th>
+                  <td style="width:10em">
+                    <input type="number" class="form-control" ng-model="data.inventory[[category.Id, type.Id].join('-')].Total">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </thead>
+</table>

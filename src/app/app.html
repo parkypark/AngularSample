@@ -1,0 +1,49 @@
+<section id="home">
+  <div class="text-center" style="margin-bottom:1em; padding-top:1em">
+    <img src="images/starline_logo.png" style="height: 80px">
+  </div>
+
+  <div uib-alert ng-if="$localStorage.showChangeLog" class="alert-info" type="info" close="$localStorage.showChangeLog = false">
+    <div class="h3"><i class="fa fa-info-circle"></i> App Update v{{AppSettings.appVersion}}</div>
+    <ul style="color: #000">
+      <li ng-repeat="line in AppSettings.changeLog">{{line}}</li>
+    </ul>
+  </div>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Quality Assurance Web App</h3>
+    </div>
+
+    <div class="list-group">
+      <div class="list-group-item well well-sm" style="margin:0"><strong>Fabrication NCMR</strong></div>
+      <a class="list-group-item" ui-sref="ncmr.fabrication.create">
+        <i class="fa fa-fw fa-plus"></i> Create a new NCMR <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+      <a class="list-group-item" ui-sref="ncmr.fabrication.list">
+        <i class="fa fa-fw fa-list"></i> List NCMRs <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+
+      <div class="list-group-item well well-sm" style="margin:0"><strong>Extrusion NCMR (External)</strong></div>
+      <a class="list-group-item" ui-sref="ncmr.extrusions-external.create">
+        <i class="fa fa-fw fa-plus"></i> Create a new NCMR <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+      <a class="list-group-item" ui-sref="ncmr.extrusions-external.list">
+        <i class="fa fa-fw fa-list"></i> List NCMRs <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+
+      <div class="list-group-item well well-sm" style="margin:0"><strong>Extrusion NCMR (Internal)</strong></div>
+      <a class="list-group-item" ui-sref="ncmr.extrusions-internal.create">
+        <i class="fa fa-fw fa-plus"></i> Create a new NCMR <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+      <a class="list-group-item" ui-sref="ncmr.extrusions-internal.list">
+        <i class="fa fa-fw fa-list"></i> List NCMRs <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+
+      <div class="list-group-item well well-sm" style="margin:0"><strong>PQP</strong></div>
+      <a class="list-group-item" ui-sref="pqp.edit.aluminum-recycling">
+        <i class="fa fa-fw fa-bar-chart-o"></i> Data Entry <i class="fa fa-chevron-right pull-right"></i>
+      </a>
+    </div>
+  </div>
+</section>

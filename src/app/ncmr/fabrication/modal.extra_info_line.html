@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h3 class="modal-title">Line Scanning Dialog</h3>
+</div>
+<table class="table " st-table="panels">
+    <tbody>
+        <tr>
+            <td><b>Order#:</b> {{line.ordernumber}}</td>
+            <td><b>Box#:</b> {{line.frame_number}}</td>
+            <td><b>Project#:</b> {{line.project_name}}</td>
+        </tr>
+         <tr>
+            <td><b>Material#:</b> {{line.material}}</td>
+            <td><b>Size#:</b> {{line.width}} X {{line.height}} X {{line.depth}}</td>
+            <td><b>colour#:</b> {{line.colour}}</td>
+        </tr>
+    </tbody>
+    
+</table>
+<table class="table table-hover" st-table="panels">
+    <thead>
+        <tr>
+            <th>Rejecting Panel Qty</th>
+            <th>Reason for Reject</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input class="form-control" type = "number" ng-model="line.rejected"></td>
+            <td><input class="form-control" ng-model="line.rejected_reason"></td>
+        </tr>
+    </tbody>   
+</table>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+    <button class="btn btn-primary" ng-click="submit()">
+        <i class="fa fa-arrow-right"></i> Enter
+    </button>
+</div>

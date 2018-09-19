@@ -1,0 +1,311 @@
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables";
+
+$font-family-sans-serif: 'Helvetica', 'Calibri', 'sans';
+$font-family-serif: 'Times', 'Constantia', 'serif';
+
+$fa-font-path: '../../node_modules/font-awesome/fonts';
+@import "~font-awesome/scss/font-awesome";
+@import "~angular-toastr/dist/angular-toastr.min.css";
+
+
+html, body {
+    background: url('../public/images/dark-blue-texture.jpg') no-repeat center 50px fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    padding-right: 0 !important;
+}
+
+body > .container {
+  padding-top: 70px;
+}
+
+h4, .h4, h5, .h5, h6, .h6 {margin-bottom: 0}
+form .ng-invalid:not(.ng-pristine) {border: 1px solid red}
+fieldset {margin-bottom:1em}
+
+// Fix for uib-datepicker ugliness when using non-default bootstrap theme
+table[role="grid"] {
+    .btn {border: 0}
+
+    td[role="gridcell"] {
+        .btn:not(.btn-info) {
+            color: $text-color;
+            background: none;
+            text-shadow: none;
+        }
+
+        .btn.btn-info {
+            background: $component-active-bg;
+            color: $component-active-color;
+            .text-info { color: $component-active-color; }
+        }
+
+        .btn.active { box-shadow: none; }
+        .btn:not(.btn-info):hover { background-color: #eeeeee; }
+    }
+}
+
+#loading-indicator {
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    position: fixed;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    z-index: 99999;
+
+    .alert {
+        display: inline;
+    }
+}
+
+.attachments img { width: auto; height: 75px }
+.btn-file {
+    overflow: hidden;
+    position: relative;
+
+    input[type=file] {
+        display: block;
+        filter: alpha(opacity=0);
+        margin: 0;
+        min-width: 100%;
+        min-height: 100%;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+    }
+}
+.divider {
+  height: 1px;
+  width:100%;
+  display:block; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: $well-bg;
+}
+.loading { cursor: wait !important; }
+
+.modal-header {
+    background: $panel-primary-heading-bg;
+    border-color: $panel-primary-border;
+    .modal-title {color: $panel-primary-text !important}
+}
+.modal-body.form-horizontal {
+    @extend .well;
+    margin: 0;
+}
+.modal-footer {
+    background: #f2f2f2 !important;
+    border-top: solid 1px #ccc !important;
+    padding: .75em 1em !important;
+}
+
+.nav, .pagination, .pager, .carousel, .row-as-link, .clickable, a { cursor: pointer }
+.navbar {
+    padding-right: 0 !important;
+
+    .list-inline { margin-bottom: 0 }
+    .table { background: none; margin-bottom: 0 }
+    .table > tbody > tr > td { border: none; padding-top: 0; padding-bottom: 0 }
+}
+.navbar-fixed-top {
+  background: $brand-primary;
+  a {
+    color: #fff;
+  }
+}
+.navbar.actions {
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+  margin-top: 50px;
+  z-index: 1020;
+}
+.navbar-buttons {
+  background: none;
+  background-color: $well-bg;
+  border-top: solid 1px $well-border !important;
+  z-index: 3;
+  form {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.navbar-default .navbar-brand { float: none; padding: 0 }
+.navbar-toggle {
+  color: #fff;
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
+}
+
+.ncmr-details li { padding-top: 1em; padding-bottom: 1em }
+.ncmr-lines tr th { padding-right: 1em }
+.ncmr-lines tr th:last-of-type:not(:first-of-type) { padding-left: 1em }
+
+.pagination { margin: 0 !important }
+.panel {
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding;
+    background-clip: padding-box;
+
+    &.panel-primary .table {
+        margin-bottom: 0;
+    }
+
+    .panel-default .panel-title {
+        color: inherit;
+    }
+
+    .panel-body .alert {
+        margin-left: -$panel-body-padding;
+        margin-right: -$panel-body-padding;
+        margin-top: -$panel-body-padding;
+    }
+
+    .panel-footer .table {
+        border: none;
+        tr td, tr th {border: none}
+    }
+
+    tr {
+        color: $text-color;
+    }
+
+    td {
+      vertical-align: middle !important;
+    }
+}
+
+#ncmr {
+  .panel-primary {
+    margin-top: 4.5em;
+  }
+}
+
+#pqp {
+  margin-top: 4.5em;
+
+  #side-nav {
+    .panel-body {
+      padding: 0;
+
+      .nav-pills > li.active > a {
+        background: lighten($brand-primary, 20%);
+      }
+      .nav-pills > li > a {
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+.print-view {
+    background: #fff;
+    font-family: "Cabin", Arial, sans-serif;
+    font-size: 9px;
+    height: 100%;
+    padding: 1em;
+
+    * { color: #000; text-shadow: none }
+    table { background: #fff }
+
+    .ncmr-attachments img { margin-top: 0; margin-bottom: 0 }
+
+    .ncmr-header {
+        tr td { padding-top: 0; padding-bottom: 0; margin: 0; vertical-align: middle }
+        h3 { margin: 0 }
+    }
+
+    .ncmr-header, .ncmr-details {
+        tr td, tr th {border: solid 1px #000 !important}
+    }
+
+    .ncmr-info {
+        margin-bottom: 0.5em;
+        h3, h4 { margin-bottom: 0; margin-top: 0 }
+     }
+    .ncmr-details {
+        tr td { vertical-align: middle }
+    }
+    .ncmr-footer {
+        margin-bottom: 2em;
+
+        tr td {
+            border-left: none; border-right: none;
+            border-top: none; border-bottom: 1px solid black;
+            min-width: 15em
+        }
+
+        tr th { padding-right: 1em }
+        tr:not(:first-of-type) td, tr:not(:first-of-type) th { padding-top: 2em }
+        tr th:not(:first-of-type) { padding-left: 4em }
+    }
+}
+
+.rsvp {
+    border-color: black;
+    border-width: 4px;
+    border-style: double;
+    padding: 1em;
+
+    h4 {margin: 0; line-height: 1.25}
+}
+
+.table {
+    &.picklist {
+        font-size: 110%;
+        &.input {
+            min-width: 3.5em
+        }
+    }
+
+    tr[ng-click] {
+        cursor: pointer;
+    }
+
+    >tbody>tr {
+        td,th {vertical-align: middle}
+    }
+
+    .table {margin: 0}
+}
+
+.table-invisible {
+    border: none !important;
+    background: none !important;
+    margin: 0;
+    th {vertical-align: middle !important}
+    tr td, tr th {border: none !important}
+}
+
+.text-lg {font-size: 1.15em}
+.text-middle {vertical-align: middle !important}
+
+.well {
+    .table {
+        margin: 0
+    }
+}
+
+@media print {
+    html, body {
+        font-size: 8px !important;
+        height: 99%;
+        margin: 0;
+        padding: 0
+    }
+
+    .print-view {margin-top: 0}
+    .ncmr-details {font-size: 8px !important}
+
+    .ncmr-attachments img {
+        height: 666px;
+        page-break-before: always;
+        page-break-inside: avoid;
+    }
+}

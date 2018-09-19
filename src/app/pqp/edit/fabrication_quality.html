@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-xs-5"></th>
+      <th>Production</th>
+      <th>Failures</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle">{{category.FabricationType}}</th>
+      <td>
+        <input class="form-control" type="number" ng-model="data.fabrication[category.Id].Processed">
+      </td>
+      <td>
+        <input class="form-control" type="number" ng-model="data.fabrication[category.Id].Failed">
+      </td>
+    </tr>
+  </tbody>
+</table>

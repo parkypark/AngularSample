@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-xs-4"></th>
+      <th>Received</th>
+      <th>Processed</th>
+      <th>Failed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle">{{category.Category}}</th>
+      <td>
+        <input class="form-control" type="number" ng-model="data.extrusion_quality[category.Id].Received">
+      </td>
+      <td>
+        <input class="form-control" type="number" ng-model="data.extrusion_quality[category.Id].Processed">
+      </td>
+      <td>
+        <input class="form-control" type="number" ng-model="data.extrusion_quality[category.Id].Failed">
+      </td>
+    </tr>
+  </tbody>
+</table>

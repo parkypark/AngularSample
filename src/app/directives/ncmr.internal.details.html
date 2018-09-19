@@ -1,0 +1,64 @@
+<table class="table">
+  <tbody>
+  <tr ng-repeat="line in ncmr.details track by line.hash_code" ng-class="{warning: selected[line.hash_code]}"
+    ng-click="selectLine(line)">
+    <td ng-if="selected">
+      <i class="fa fa-fw" ng-class="{'fa-check-square-o': selected[line.hash_code], 'fa-square-o': !selected[line.hash_code]}"></i>
+    </td>
+
+    <td>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>List Number:</strong>
+          <span class="pull-right">{{::line.list_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Profile:</strong>
+          <span class="pull-right">{{::line.profile}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Length:</strong>
+          <span class="pull-right">{{::line.stock_length}}&Prime;</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Colour:</strong>
+          <span class="pull-right">{{::line.color}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Failure Source:</strong>
+          <span class="pull-right">{{::line.failure_source}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Found By:</strong>
+          <span class="pull-right">{{::line.found_by_department}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Rush Code:</strong>
+          <span class="pull-right">{{::line.rush_code}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Product Type:</strong>
+          <span class="pull-right">{{::line.product_type}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Qty. Rejected:</strong>
+          <span class="pull-right">{{::line.rejected}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-8 col-lg-9">
+          <strong>Discrepancy:</strong>
+          <span class="pull-right">{{::line.discrepancy}}</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

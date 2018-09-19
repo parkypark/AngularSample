@@ -1,0 +1,57 @@
+<table class="table">
+  <tbody>
+  <tr ng-repeat="line in ncmr.details track by line.hash_code" ng-class="{warning: selected[line.hash_code]}"
+    ng-click="selectLine(line)">
+    <td>
+      <i class="fa fa-fw" ng-class="{'fa-check-square-o': selected[line.hash_code], 'fa-square-o': !selected[line.hash_code]}"></i>
+    </td>
+
+    <td>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <strong>List:</strong>
+          <span class="pull-right">{{line.list_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-8 col-md-8">
+          <strong>Project:</strong>
+          <span class="pull-right">{{line.project_name}}  (#{{line.project_id}})</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Frame:</strong>
+          <span class="pull-right">{{line.frame_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Material:</strong>
+          <span class="pull-right">{{line.material}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Colour:</strong>
+          <span class="pull-right">{{line.colour}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Size:</strong>
+          <span class="pull-right">
+            <span>{{line.width|fraction}}″ x {{line.height|fraction}}″</span>
+            <span ng-if="line.depth">x {{line.depth|fraction}}″</span>
+          </span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Qty. Rejected:</strong>
+          <span class="pull-right">{{line.rejected}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <strong>Reason to Reject:</strong>
+          <span class="pull-right">{{line.rejected_reason}}</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>

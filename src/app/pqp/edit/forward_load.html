@@ -1,0 +1,28 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Patio Doors</th>
+      <th>Swing Doors</th>
+      <th>Windows</th>
+      <th>CW/SSG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle text-nowrap">{{category.description}}</th>
+      <td>
+        <input type="number" class="form-control" ng-model="data.forward_load[category.id].PatioDoors">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.forward_load[category.id].SwingDoors">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.forward_load[category.id].Windows">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.forward_load[category.id].CurtainWall">
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,48 @@
+<table class="table">
+  <thead>
+    <tr class="active">
+      <th colspan="4">Openings</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th class="col-xs-2 text-middle text-right">Tests</th>
+      <td class="col-xs-4">
+        <input type="number" class="form-control" ng-model="data.field_water_opening_tests.Tests">
+      </td>
+
+      <th class="col-xs-2 text-middle text-right">Failures</th>
+      <td class="col-xs-4">
+        <input type="number" class="form-control" ng-model="data.field_water_opening_tests.Failures">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table">
+  <thead>
+    <tr class="active">
+      <th colspan="4">Frames</th>
+    </tr>
+    <tr>
+      <th class="col-lg-3">Series</th>
+      <th>Tests</th>
+      <th>Failures (Mfg)</th>
+      <th>Failures (Install)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle">{{category.FrameSeries}}</th>
+      <td>
+        <input type="number" class="form-control" ng-model="data.field_water_frame_tests[category.Id].Tests">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.field_water_frame_tests[category.Id].FailuresMfg">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.field_water_frame_tests[category.Id].FailuresInstall">
+      </td>
+    </tr>
+  </tbody>
+</table>

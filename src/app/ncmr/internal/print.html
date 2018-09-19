@@ -1,0 +1,119 @@
+<nav class="navbar navbar-buttons navbar-fixed-top hidden-print" role="navigation">
+  <div class="container">
+    <form class="navbar-form navbar-right">
+      <button class="btn btn-default" ui-sref="^.list"><i class="fa fa-arrow-left"></i> Back</button>
+      <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+    </form>
+  </div>
+</nav>
+
+<div class="print-view">
+  <table class="table table-bordered table-condensed ncmr-header">
+    <tr>
+      <td colspan="2" class="col-xs-4">Starline Windows</td>
+      <td rowspan="3" class="col-xs-2 text-center"><img id="logo" ng-src="images/starline_logo.png" style="height:64px"></td>
+      <td rowspan="3" class="col-xs-2 text-center"><h3>Form</h3></td>
+      <td class="col-xs-2 text-right">REVISION DATE:</td>
+      <td class="col-xs-2 text-right">June 27, 2008</td>
+    </tr>
+    <tr>
+      <td colspan="2">19091 &ndash; 36 Avenue, Surrey, B.C. Canada V3Z 0P6</td>
+      <td class="text-right">DOCUMENT:</td>
+      <td class="text-right">QF705-2</td>
+    </tr>
+    <tr>
+      <td>Tel: 604-882-6855</td>
+      <td>Fax: 604-882-6890</td>
+      <td class="text-right">REVISION:</td>
+      <td class="text-right">1</td>
+    </tr>
+  </table>
+
+  <div class="ncmr-info">
+    <div class="row">
+      <div class="col-xs-12">
+        <h4 class="text-right">Report #: {{ncmr.report_number}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Non-conforming Materials Report (Internal)</h4>
+      </div>
+      <div class="col-xs-6">
+        <h4 class="text-right">Report Date: {{ncmr.report_date | date:'dd-MMM-yy'}}</h4>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-condensed ncmr-details">
+    <thead>
+    <tr>
+      <th class="text-right">#</th>
+      <th>Project Name</th>
+      <th class="text-center">List #</th>
+      <th class="text-center">Extrusion</th>
+      <th class="text-center">Colour Code</th>
+      <th class="text-center">Failure Source</th>
+      <th class="text-center">Found By</th>
+      <th class="text-center">Discrepancy</th>
+      <th class="text-center">Rush Code</th>
+      <th class="text-center">Disposition</th>
+      <th class="text-center">Product Type</th>
+      <th class="text-right">Qty. Rejected</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="line in ncmr.details">
+      <td class="text-right text-nowrap">{{$index + 1}}</td>
+      <td>#{{line.project_number}} - {{line.project_name}}</td>
+      <td class="text-center text-nowrap">{{line.list_number}}</td>
+      <td class="text-center text-nowrap">{{line.profile}} @ {{line.stock_length}}</td>
+      <td class="text-center text-nowrap">{{line.color}}</td>
+      <td class="text-center text-nowrap">{{line.failure_source}}</td>
+      <td class="text-center text-nowrap">{{line.found_by_department}}</td>
+      <td class="text-center text-nowrap">{{line.discrepancy}}</td>
+      <td class="text-center text-nowrap">{{line.rush_code}}</td>
+      <td class="text-center text-nowrap">Rejected</td>
+      <td class="text-center text-nowrap">{{line.product_type}}</td>
+      <td class="text-right text-nowrap">{{line.rejected}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="11" class="text-right">Total Rejected:</td>
+      <td class="text-right">{{totalRejected}}</td>
+    </tr>
+    <tr>
+      <td colspan="12"><strong>Comments: </strong>{{ncmr.comment}}</td>
+    </tr>
+    </tfoot>
+  </table>
+
+  <br>
+
+  <table class="ncmr-footer">
+    <tbody>
+    <tr>
+      <th>Inspected By:</th>
+      <td class="text-center">{{ncmr.inspector}}</td>
+      <th>Sample Plan:</th>
+      <td class="text-center">100% Inspection</td>
+    </tr>
+    <tr>
+      <th>Quality Manager:</th>
+      <td></td>
+      <th>Materials Manager:</th>
+      <td></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div id="attachments" ng-if="ncmr.attachments.length > 0">
+    <div class="page-header hidden-print">
+      <h3>Attachments</h3>
+    </div>
+
+    <img class="img-responsive center-block"
+      ng-repeat="attachment in ncmr.attachments" ng-src="{{attachment.data}}">
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<nav class="navbar navbar-buttons navbar-fixed-top hidden-print" role="navigation">
+  <div class="container">
+    <form class="navbar-form navbar-right">
+      <button class="btn btn-default" ui-sref="^.list"><i class="fa fa-arrow-left"></i> Back</button>
+      <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print</button>
+    </form>
+  </div>
+</nav>
+
+<div class="print-view">
+  <table class="table table-bordered table-condensed ncmr-header">
+    <tr>
+      <td colspan="2" class="col-xs-4">Starline Windows</td>
+      <td rowspan="3" class="col-xs-2 text-center"><img id="logo" ng-src="images/starline_logo.png" style="height:64px"></td>
+      <td rowspan="3" class="col-xs-2 text-center"><h3>Form</h3></td>
+      <td class="text-right">DOCUMENT:</td>
+      <td class="text-right">QF705-8</td>
+    </tr>
+    <tr>
+      <td colspan="2">19091 &ndash; 36 Avenue, Surrey, B.C. Canada V3Z 0P6</td>
+      <td class="text-right">REVISION:</td>
+      <td class="text-right">1</td>
+    </tr>
+    <tr>
+      <td>Tel: 604-882-6855</td>
+      <td>Fax: 604-882-6890</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <div class="ncmr-info">
+    <div class="row">
+
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Non-conforming Materials Report (Fabrication)</h4>
+      </div>
+      <div class="col-xs-6">
+        <h4 class="text-right">Report #: {{ncmr.report_number}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <h4>Supplier: {{ncmr.supplier||'N/A'}}</h4>
+      </div>
+      <div class="col-xs-6">
+        <h4 class="text-right">Report Date: {{ncmr.report_date | date:'dd-MMM-yy'}}</h4>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-condensed ncmr-details">
+    <thead>
+    <tr>
+      <th class="text-right">#</th>
+      <th>Project</th>
+      <th class="text-center">List #</th>
+      <th class="text-center">Frame #</th>
+      <th class="text-center">Material</th>
+      <th class="text-center">Colour</th>
+      <th class="text-center">Size</th>
+      <th class="text-center">Reason to Reject</th>
+      <th class="text-right">Qty. Rejected</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="line in ncmr.details">
+      <td class="text-right text-nowrap">{{$index + 1}}</td>
+      <td>{{line.project_name}} (#{{line.project_number}})</td>
+      <td class="text-center text-nowrap">{{line.list_number}}</td>
+      <td class="text-center text-nowrap">{{line.frame_number}}</td>
+      <td class="text-center text-nowrap">{{line.material}}</td>
+      <td class="text-center text-nowrap">{{line.colour}}</td>
+      <td class="text-center text-nowrap">
+        <span>{{line.width|fraction}}″ x {{line.height|fraction}}″</span>
+        <span ng-if="line.depth">x {{line.depth|fraction}}″</span>
+      </td>
+      <td class="text-center">{{line.rejected_reason}}</td>
+      <td class="text-right text-nowrap">{{line.rejected}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="8" class="text-right">Total Rejected:</td>
+      <td class="text-right">{{totalRejected}}</td>
+    </tr>
+    <tr>
+      <td colspan="9"><strong>Comments: </strong>{{ncmr.comment}}</td>
+    </tr>
+    </tfoot>
+  </table>
+
+  <br>
+
+  <table class="ncmr-footer">
+    <tbody>
+    <tr>
+      <th>Inspected By:</th>
+      <td class="text-center">{{ncmr.inspector}}</td>
+      <th>Inspection Date:</th>
+      <td class="text-center">{{ncmr.date_inspected|date:'mediumDate'}}</td>
+      <th>Sample Plan:</th>
+      <td class="text-center">100% Inspection</td>
+    </tr>
+    <tr>
+      <th>Form Filled Out By:</th>
+      <td class="text-center">{{ncmr.report_filled_by}}</td>
+      <th>Bundle Ref #:</th>
+      <td class="text-center">{{ncmr.bundle_number}}</td>
+      <th>Quantity in Bundle:</th>
+      <td class="text-center">{{ncmr.bundle_qty}}</td>
+    </tr>
+    <tr>
+      <th>Quality Manager:</th>
+      <td></td>
+      <th>Materials Manager:</th>
+      <td></td>
+      <th class="col-xs-4" colspan="2" rowspan="4">
+        <div class="rsvp">
+          <h4 class="text-center">Please respond with Corrective Action Report within two weeks of receiving this notice.</h4>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th>Date Material Returned:</th>
+      <td class="text-center"></td>
+      <th>Replacement P.O.:</th>
+      <td class="text-center"></td>
+    </tr>
+    <tr>
+      <th>Driver's Signature:</th>
+      <td class="text-center"></td>
+    </tr>
+    <tr>
+      <th colspan="4"></th>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="ncmr-attachments" ng-if="ncmr.attachments.length > 0">
+    <div class="page-header hidden-print">
+      <h3>Attachments</h3>
+    </div>
+
+    <img class="img-responsive center-block"
+      ng-repeat="attachment in ncmr.attachments" ng-src="{{attachment.data}}">
+  </div>
+</div>

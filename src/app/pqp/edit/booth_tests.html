@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-lg-4">Series</th>
+      <th>Tests</th>
+      <th>Failures</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle">{{category.FrameSeries}}</th>
+      <td>
+        <input type="number" class="form-control" ng-model="data.booth_tests[category.Id].Tests">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.booth_tests[category.Id].Failures">
+      </td>
+    </tr>
+  </tbody>
+</table>

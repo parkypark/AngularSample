@@ -1,0 +1,107 @@
+<section id="ncmr">
+  <nav class="navbar navbar-buttons navbar-fixed-top hidden-print actions" role="navigation">
+    <div class="container">
+      <form class="navbar-form navbar-right">
+        <button class="btn btn-default" ui-sref="^.create">
+          <i class="fa fa-plus"></i> Add
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Fabrication NCMRs</h3>
+    </div>
+
+    <table class="table table-hover" st-pipe="table.getNcmrs" st-table="table.displayed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>#</th>
+          <th>Report Date</th>
+          <th>Inspector</th>
+          <th class="text-right">Total Rejected</th>
+          <th></th>
+        </tr>
+        <tr>
+          <td colspan="6">
+            <div class="input-group" style="width:100%">
+              <span class="input-group-addon"><i class="fa fa-search"></i></span>
+              <input class="form-control" type="search" st-search="global" ng-model="searchValue" placeholder="search...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" ng-click="searchValue = null; table.refresh({search: {}})">
+                  <i class="fa fa-times"></i>
+                </button>
+              </span>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-if="table.isLoading">
+          <td colspan="6"><i class="fa fa-info-circle"></i> Loading...</td>
+        </tr>
+        <tr ng-if="!table.isLoading && table.numRecords === 0">
+          <td colspan="6"><i class="fa fa-info-circle"></i> No records.</td>
+        </tr>
+        <tr ng-repeat-start="row in table.displayed track by row._id" ng-click="expandRow($event, row)" title="Expand/collapse details">
+          <td>
+            <i class="fa" ng-class="{'fa-caret-down': expandedRows[row._id], 'fa-caret-right': !expandedRows[row._id]}"></i>
+          </td>
+          <td>{{row.report_number}}</td>
+          <td>{{row.report_date|date:'mediumDate'}}</td>
+          <td>{{row.inspector}}</td>
+          <td class="text-right">{{getTotalRejected(row)}}</td>
+          <td class="text-right">
+            <div class="btn-group" uib-dropdown>
+              <button class="btn btn-default" title="Show menu" ng-click="$event.stopPropagation()" uib-dropdown-toggle>
+                <i class="fa fa-bars"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right" uib-dropdown-menu>
+                <li>
+                  <a href ng-click="edit(row); $event.stopPropagation();">
+                    <i class="fa fa-fw fa-pencil"></i> Edit
+                  </a>
+                </li>
+                <li>
+                  <a href ng-click="remove(row); $event.stopPropagation();">
+                    <i class="fa fa-fw fa-trash"></i> Delete
+                  </a>
+                </li>
+                <li>
+                  <a ui-sref="^.print({_id: row._id})" ng-click="$event.stopPropagation()">
+                    <i class="fa fa-fw fa-print"></i> Print
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <a class="btn btn-default" target="_blank" ng-click="$event.stopPropagation()" title="Download PDF"
+              href="https://projects.starlinewindows.com/api/quality/v1/ncmr/fabrication/download/{{row._id}}">
+              <i class="fa fa-fw fa-file-pdf-o"></i>
+            </a>
+          </td>
+        </tr>
+        <tr ng-class="{well: row.details.length > 0, warning: !row.details.length > 0}" uib-collapse="!expandedRows[row._id]"
+            ng-repeat-end>
+          <td colspan="6">
+            <ul class="list-unstyled" ng-if="row.supplier || row.comment">
+              <li ng-if="row.supplier"><strong>Supplier:</strong> {{row.supplier}}</li>
+              <li ng-if="row.comment"><strong>Comment:</strong> {{row.comment}}</li>
+            </ul>
+            <ncmr-panel-details ng-if="row.details.length > 0" ncmr="row"></ncmr-panel-details>
+            <span ng-if="!row.details.length > 0"><i class="fa fa-warning"></i> No lines</span>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot ng-if="table.numRecords > 5">
+        <tr>
+          <td colspan="6" class="text-center">
+            <div st-pagination="" st-items-by-page="10" st-displayed-pages="7"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>

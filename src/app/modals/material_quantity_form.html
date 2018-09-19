@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">2. Rejected Materials</h4>
+</div>
+
+<div class="modal-body">
+    <table class="table table-hover" st-table="materials">
+        <thead>
+        <tr>
+            <th st-sort="profile">Profile</th>
+            <th st-sort="stock_length">Length</th>
+            <th st-sort="color">Colour</th>
+            <th st-sort="max_quantity">Qty</th>
+            <th st-sort="rejected">Rejected</th>
+        </tr>
+        <tr>
+            <th><input st-search="profile" class="form-control" type="search" placeholder="filter..."></th>
+            <th><input st-search="stock_length" class="form-control" type="search" placeholder="filter..."></th>
+            <th><input st-search="color" class="form-control" type="search" placeholder="filter..."></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="profile in materials track by profile.hash_code">
+            <td>{{profile.profile}}</td>
+            <td>{{profile.stock_length}}</td>
+            <td>{{profile.color}}</td>
+            <td>{{profile.max_quantity}}</td>
+            <td>
+                <input ng-model="rejected[profile.hash_code]" class="form-control" type="number" min="0" max="{{profile.max_quantity}}">
+            </td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <st-pagination st-items-by-page="5" st-displayed-pages="7"></st-pagination>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+    <button class="btn btn-primary" ng-click="submit()"><i class="fa fa-arrow-right"></i> Next</button>
+</div>

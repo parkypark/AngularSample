@@ -1,0 +1,68 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Line (Internal NCMR)</h4>
+</div>
+
+<div ng-init="data={}">
+  <div class="form-horizontal well" style="margin:0">
+    <table class="table table-invisible">
+      <tr>
+        <th class="col-xs-2 text-right">Project #</th>
+        <td class="col-xs-2"><input class="form-control" ng-model="data.project_number"></td>
+        <th class="col-xs-2 text-right">Project Name</th>
+        <td class="col-xs-6"><input class="form-control" ng-model="data.project_name"></td>
+      </tr>
+      <tr>
+        <th class="text-right">List #</th>
+        <td><input class="form-control" ng-model="data.list_number"></td>
+        <th class="text-right">Profile</th>
+        <td><input class="form-control" ng-model="data.profile"></td>
+      </tr>
+      <tr>
+        <th class="text-right">Length</th>
+        <td><input class="form-control" type="number" ng-model="data.stock_length"></td>
+        <th class="text-right">Colour</th>
+        <td><input class="form-control" ng-model="data.color"></td>
+      </tr>
+    </table>
+
+    <table class="table table-invisible">
+      <tr>
+        <th class="col-xs-2 text-right">Discrepancy</th>
+        <td class="col-xs-4">
+          <input class="form-control" ng-model="data.discrepancy"
+             uib-typeahead="o.description for o in lookups.discrepancies | filter:$viewValue | limitTo:8">
+        </td>
+        <th class="col-xs-2 text-right">Failure Source</th>
+        <td class="col-xs-4">
+          <input class="form-control" ng-model="data.failure_source"
+             uib-typeahead="o.description for o in lookups.failure_sources | filter:$viewValue | limitTo:8">
+        </td>
+      </tr>
+      <tr>
+        <th class="text-right">Found By</th>
+        <td>
+          <input class="form-control" ng-model="data.found_by_department"
+             uib-typeahead="o.description for o in lookups.departments | filter:$viewValue | limitTo:8">
+        </td>
+        <th class="text-right">Rush Code</th>
+        <td>
+          <input class="form-control" ng-model="data.rush_code"
+             uib-typeahead="o.description for o in lookups.rush_codes | filter:$viewValue | limitTo:8">
+        </td>
+      </tr>
+      <tr>
+        <th class="text-right">Product Type</th>
+        <td><input class="form-control" ng-model="data.product_type"></td>
+        <th class="text-right">Rejected</th>
+        <td><input class="form-control" type="number" ng-model="data.rejected"></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+  <button class="btn btn-primary" ng-click="$uibModalInstance.close(data)" ng-disabled="!isValid()">
+    <i class="fa fa-check"></i> Submit
+  </button>
+</div>

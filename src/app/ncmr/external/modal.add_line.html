@@ -1,0 +1,75 @@
+<div class="modal-header">
+    <h4 class="modal-title">Add Line (External NCMR)</h4>
+</div>
+
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+      <table class="table table-invisible" style="margin: 0">
+          <tr>
+              <td class="text-nowrap" style="width: 6em">
+                  <span ng-bind-html="match.model.die_number | uibTypeaheadHighlight:query"></span>
+              </td>
+              <td>
+                  <span ng-bind-html="match.model.profiles | uibTypeaheadHighlight:query"></span>
+              </td>
+          </tr>
+      </table>
+  </a>
+</script>
+
+<div class="modal-body form-horizontal" ng-init="data={}">
+    <table class="table table-invisible">
+        <tr>
+            <th class="col-xs-2 text-right">Die Number</th>
+            <td class="col-xs-4">
+                <input class="form-control" ng-model="profile" placeholder="Begin typing die/profile to search..."
+                       uib-typeahead="o as o.die_number for o in materials | filter:$viewValue | limitTo:8"
+                       typeahead-template-url="customTemplate.html">
+            </td>
+            <th class="col-xs-2 text-right">Stock Length</th>
+            <td class="col-xs-4">
+                <input class="form-control" type="number" ng-model="data.stock_length">
+            </td>
+        </tr>
+        <tr>
+
+            <th class="text-right">Colour</th>
+            <td><input class="form-control" ng-model="data.colour"></td>
+            <th class="text-right">P.O. Number</th>
+            <td><input class="form-control" type="number" ng-model="data.po_number"></td>
+        </tr>
+        <tr>
+            <th class="text-right">RCV Number</th>
+            <td><input class="form-control" type="number" ng-model="data.rcv_number"></td>
+            <th class="text-right">Date Received</th>
+            <td>
+                <div class="input-group">
+                    <input class="form-control" placeholder="YYYY-MM-DD" ng-model="data.date_received" uib-datepicker-popup
+                           is-open="dppNEA.opened" show-weeks="false" close-text="Close">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="$parent.dppNEA.opened = true">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="text-right">Discrepancy</th>
+            <td><input class="form-control" ng-model="data.discrepancy"></td>
+            <th class="text-right">Qty. Picked</th>
+            <td><input class="form-control" type="number" ng-model="data.picked"></td>
+        </tr>
+        <tr>
+            <th class="text-right">Qty. Rejected</th>
+            <td><input class="form-control" type="number" ng-model="data.rejected"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+    <button class="btn btn-primary" ng-click="$uibModalInstance.close(data)" ng-disabled="!isValid()">
+        <i class="fa fa-check"></i> Submit
+    </button>
+</div>

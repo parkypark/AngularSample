@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th class="col-lg-4">Location</th>
+      <th>In</th>
+      <th>Out</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="category in categories">
+      <th class="text-middle">{{category.Location}}</th>
+      <td>
+        <input type="number" class="form-control" ng-model="data.employees[category.Id].In">
+      </td>
+      <td>
+        <input type="number" class="form-control" ng-model="data.employees[category.Id].Out">
+      </td>
+    </tr>
+  </tbody>
+</table>

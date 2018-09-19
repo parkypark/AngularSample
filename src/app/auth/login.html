@@ -1,0 +1,64 @@
+<nav class="navbar navbar-inverse navbar-fixed-top hidden-print" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <span class="navbar-brand">Quality Assurance</span>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-body" style="padding:30px">
+                <img src="images/starline_logo.png" style="width:100%; margin-bottom: 0">
+            </div>
+
+            <div class="panel-footer">
+                <form class="form-horizontal" name="loginForm" style="margin-top: 15px" novalidate>
+                    <div class="alert" ng-class="'alert-' + message.type" ng-repeat="message in messages">
+                        {{message.message}}
+                    </div>
+
+                    <div class="form-group"
+                         ng-class="{'has-error has-feedback': !loginForm.username.$pristine && loginForm.username.$invalid}">
+                        <label class="col-sm-4 control-label">Username</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" name="username" type="text" placeholder="Username"
+                                   ng-model="login.username" ng-minlength="3" ng-maxlength="25"
+                                   required autofocus>
+                            <div ng-show="!loginForm.username.$pristine && loginForm.username.$invalid">
+                                <span class="fa fa-trash form-control-feedback" aria-hidden="true"></span>
+                                <span class="help-block" ng-show="loginForm.username.$error.required">Username is required.</span>
+                                <span class="help-block" ng-show="loginForm.username.$error.minlength">Username is too short.</span>
+                                <span class="help-block" ng-show="loginForm.username.$error.maxlength">Username is too long.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-error has-feedback': !loginForm.password.$pristine && loginForm.password.$invalid}">
+                        <label class="col-sm-4 control-label">Password</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" name="password" type="password" placeholder="Password"
+                                   ng-model="login.password" ng-minlength="6" ng-maxlength="25"
+                                   required>
+                            <div ng-show="!loginForm.password.$pristine && loginForm.password.$invalid">
+                                <span class="fa fa-trash form-control-feedback" aria-hidden="true"></span>
+                                <span class="help-block" ng-show="loginForm.password.$error.required">Password is required.</span>
+                                <span class="help-block" ng-show="loginForm.password.$error.minlength">Password is too short.</span>
+                                <span class="help-block" ng-show="loginForm.password.$error.maxlength">Password is too long.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-4 col-sm-offset-4">
+                            <button class="btn btn-default" ng-click="performLogin()">
+                                <i class="fa fa-sign-in"></i> Log In
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

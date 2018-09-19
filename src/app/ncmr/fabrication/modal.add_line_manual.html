@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Line (Fabrication NCMR, Manual)</h4>
+</div>
+
+<div ng-init="data={}">
+  <div class="form-horizontal well" style="margin:0">
+    <table class="table table-invisible">
+      <tr>
+        <th class="col-xs-2 text-right">Project #</th>
+        <td class="col-xs-2"><input class="form-control" ng-model="data.project_id"></td>
+        <th class="col-xs-3 text-right">Project Name</th>
+        <td class="col-xs-5"><input class="form-control" ng-model="data.project_name"></td>
+      </tr>
+    </table>
+    <table class="table table-invisible">
+      <tr>
+        <th class="col-xs-2 text-right">List #</th>
+        <td><input class="form-control" type="number" ng-model="data.list_number"></td>
+        <th class="col-xs-2 text-right">Frame #</th>
+        <td><input class="form-control" type="number" ng-model="data.frame_number"></td>
+      </tr>
+      <tr>
+        <th class="text-right">Material</th>
+        <td><input class="form-control" ng-model="data.material"></td>
+        <th class="text-right">Colour</th>
+        <td><input class="form-control" ng-model="data.colour"></td>
+      </tr>
+      <tr>
+        <th class="text-right">Width</th>
+        <td><input class="form-control" type="number" ng-model="data.width"></td>
+        <th class="text-right">Height</th>
+        <td><input class="form-control" type="number" ng-model="data.height"></td>
+      </tr>
+      <tr>
+        <th class="text-right">Depth</th>
+        <td><input class="form-control" type="number" ng-model="data.depth"></td>
+        <th class="text-right">Qty. Rejected</th>
+        <td><input class="form-control" type="number" ng-model="data.rejected"></td>
+      </tr>
+      <tr>
+        <th class="text-right">Reason Rejected</th>
+        <td colspan="3">
+          <input class="form-control" ng-model="data.rejected_reason" uib-typeahead="o.description for o in lookups.discrepancies | filter:$viewValue | limitTo:8">
+        </td>
+      </tr>
+    </table>
+  </div>
+
+<div class="modal-footer">
+  <button class="btn btn-default" ng-click="$uibModalInstance.dismiss()"><i class="fa fa-ban"></i> Cancel</button>
+  <button class="btn btn-primary" ng-click="$uibModalInstance.close(data)" ng-disabled="!isValid()">
+    <i class="fa fa-check"></i> Submit
+  </button>
+</div>

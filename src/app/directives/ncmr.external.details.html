@@ -1,0 +1,58 @@
+<table class="table">
+  <tbody>
+  <tr ng-repeat="line in ncmr.details track by line.hash_code" ng-class="{warning: selected[line.hash_code]}"
+    ng-click="selectLine(line)">
+    <td ng-if="selected">
+      <i class="fa fa-fw" ng-class="{'fa-check-square-o': selected[line.hash_code], 'fa-square-o': !selected[line.hash_code]}"></i>
+    </td>
+    <td>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Die Number:</strong>
+          <span class="pull-right">{{line.die_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Length:</strong>
+          <span class="pull-right">{{line.stock_length}}&Prime;</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Colour:</strong>
+          <span class="pull-right">{{line.colour}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>PO Number:</strong>
+          <span class="pull-right">{{line.po_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Date Received:</strong>
+          <span class="pull-right">{{line.date_received|date:'mediumDate'}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>RCV Number:</strong>
+          <span class="pull-right">{{line.rcv_number}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Discrepancy:</strong>
+          <span class="pull-right">{{line.discrepancy}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Qty. Picked:</strong>
+          <span class="pull-right">{{line.picked}}</span>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <strong>Qty. Rejected:</strong>
+          <span class="pull-right">{{line.rejected}}</span>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
